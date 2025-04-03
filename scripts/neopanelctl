@@ -1,0 +1,18 @@
+#!/bin/bash
+case "$1" in
+  start)
+    cd /opt/neopanel && docker compose up -d
+    ;;
+  stop)
+    cd /opt/neopanel && docker compose down
+    ;;
+  restart)
+    cd /opt/neopanel && docker compose restart
+    ;;
+  update)
+    cd /opt/neopanel && git pull && docker compose up -d --build
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart|update}"
+    exit 1
+esac
